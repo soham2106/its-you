@@ -1,0 +1,268 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+<title>For You 💜</title>
+
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@600&family=Poppins:wght@300;400&display=swap" rel="stylesheet">
+
+<style>
+:root{
+  --purple:#c084fc;
+  --pink:#ec4899;
+  --blue:#60a5fa;
+  --ease:cubic-bezier(.22,1,.36,1);
+}
+
+*{margin:0;padding:0;box-sizing:border-box;}
+html,body{height:100%;}
+
+body{
+  font-family:'Playfair Display',serif;
+  color:white;
+  overflow-y:auto;
+  scroll-snap-type:y mandatory;
+  -webkit-overflow-scrolling:touch;
+  background:linear-gradient(120deg,#0f0120,#2e1065,#1e1b4b);
+  background-size:400% 400%;
+  animation:bgMove 22s var(--ease) infinite;
+}
+
+@keyframes bgMove{
+  0%{background-position:0% 50%;}
+  50%{background-position:100% 50%;}
+  100%{background-position:0% 50%;}
+}
+
+/* floating loves */
+.love{
+  position:fixed;
+  bottom:-10vh;
+  font-size:16px;
+  opacity:.32;
+  filter:drop-shadow(0 0 10px var(--purple));
+  animation:floatLove linear infinite;
+  pointer-events:none;
+  z-index:-1;
+}
+@keyframes floatLove{
+  to{transform:translateY(-120vh) rotate(360deg);}
+}
+
+/* glow orbs */
+.orb{
+  position:fixed;
+  width:260px;
+  height:260px;
+  border-radius:50%;
+  filter:blur(120px);
+  opacity:.45;
+  animation:floatOrb 28s var(--ease) infinite alternate;
+  z-index:-2;
+}
+.orb.purple{background:var(--purple);}
+.orb.pink{background:var(--pink);}
+.orb.blue{background:var(--blue);}
+@keyframes floatOrb{
+  to{transform:translate(260px,320px);}
+}
+
+/* sections */
+.section{
+  min-height:100vh;
+  scroll-snap-align:start;
+  display:flex;
+  justify-content:center;
+  align-items:center;
+  text-align:center;
+  padding:26px 18px;
+}
+
+/* base text */
+.text{
+  opacity:0;
+  will-change:transform, opacity;
+}
+
+/* animation types */
+.fadeScale{
+  transform:translateY(14px) scale(.98);
+  transition:opacity 1.4s var(--ease), transform 1.6s var(--ease);
+}
+.fadeUp{
+  transform:translateY(22px);
+  transition:opacity 1.6s var(--ease), transform 1.6s var(--ease);
+}
+.zoomIn{
+  transform:scale(.94);
+  transition:opacity 1.8s var(--ease), transform 1.8s var(--ease);
+}
+.calmFade{
+  transition:opacity 2.2s var(--ease);
+}
+
+/* visible */
+.show.fadeScale,
+.show.fadeUp,
+.show.zoomIn,
+.show.calmFade{
+  opacity:1;
+  transform:none;
+}
+
+/* text styles */
+.line{
+  font-size:clamp(22px,5.5vw,42px);
+  text-shadow:0 0 28px rgba(192,132,252,.7);
+}
+.soft{
+  font-family:'Poppins',sans-serif;
+  font-size:clamp(17px,4.6vw,26px);
+  line-height:1.7;
+}
+
+/* heartbeat */
+.heartbeat{
+  animation:heartbeatGlow 3.8s var(--ease) infinite;
+}
+@keyframes heartbeatGlow{
+  0%{text-shadow:0 0 18px rgba(192,132,252,.4);}
+  50%{text-shadow:0 0 38px var(--pink);}
+  100%{text-shadow:0 0 18px rgba(192,132,252,.4);}
+}
+
+/* emojis */
+.emoji{
+  display:inline-block;
+  font-size:44px;
+  margin-left:8px;
+}
+.rose{animation:sway 4s var(--ease) infinite;}
+.teddy{animation:bounce 3s var(--ease) infinite;}
+.kiss{animation:pulse 2.2s var(--ease) infinite;}
+.hug{animation:beat 2.4s var(--ease) infinite;}
+.choco{animation:slide 3.6s var(--ease) infinite;}
+.promise{animation:glow 3s var(--ease) infinite;}
+.propose{animation:spinPop 3.6s var(--ease) infinite;}
+.forever{animation:spin 6s linear infinite;}
+
+@keyframes sway{50%{transform:rotate(6deg);}}
+@keyframes bounce{50%{transform:translateY(-8px);}}
+@keyframes pulse{50%{transform:scale(1.18);}}
+@keyframes beat{30%{transform:scale(1.14);}}
+@keyframes slide{50%{transform:translateX(6px);}}
+@keyframes glow{50%{filter:drop-shadow(0 0 14px pink);}}
+@keyframes spinPop{50%{transform:rotate(8deg) scale(1.12);}}
+@keyframes spin{to{transform:rotate(360deg);}}
+
+/* desktop */
+@media(min-width:768px){
+  .emoji{font-size:56px;}
+}
+</style>
+</head>
+
+<body>
+
+<!-- background -->
+<div class="orb purple"></div>
+<div class="orb pink" style="right:0;bottom:0;"></div>
+<div class="orb blue" style="left:55%;top:10%;"></div>
+
+<span class="love" style="left:20%;animation-duration:14s;">💜</span>
+<span class="love" style="left:50%;animation-duration:11s;">💜</span>
+<span class="love" style="left:80%;animation-duration:16s;">💜</span>
+
+<!-- CONTENT (CORRECT ORDER) -->
+
+<section class="section">
+  <div class="text line fadeScale">
+    For me, every day is Rose Day<span class="emoji rose">🌹</span>
+  </div>
+</section>
+
+<section class="section">
+  <div class="text line fadeScale">
+    Every day is Propose Day (to choose you, always <span class="emoji propose">💝</span>)
+  </div>
+</section>
+
+<section class="section">
+  <div class="text line fadeScale">
+    Every day is Chocolate Day (like us <span class="emoji choco">🍫</span>)
+  </div>
+</section>
+
+<section class="section">
+  <div class="text line fadeScale">
+    Every day is Teddy Day (that’s you <span class="emoji teddy">🧸</span>)
+  </div>
+</section>
+
+<section class="section">
+  <div class="text line fadeScale">
+    Every day is Promise Day (because I’ll never break your trust <span class="emoji promise">💞</span>)
+  </div>
+</section>
+
+<section class="section">
+  <div class="text line fadeScale">
+    Every day is Hug Day (absolutely <span class="emoji hug">🫂</span>)
+  </div>
+</section>
+
+<section class="section">
+  <div class="text line fadeScale">
+    Every day is Kiss Day (must <span class="emoji kiss">😘</span>)
+  </div>
+</section>
+
+<section class="section">
+  <div class="text soft fadeUp">
+    Nibba nibbis celebrate Valentine’s week 🗓️<br>
+    For me, every single day has been Valentine’s Day since the day I met you ❤️‍🔥
+  </div>
+</section>
+
+<section class="section">
+  <div class="text soft zoomIn">
+    I love you every day, every minute, every second.<br>
+    If there’s only one person who loves you, that’s me.<br>
+    And if there’s no one… that means I’m dead.
+  </div>
+</section>
+
+<section class="section">
+  <div class="text soft fadeUp heartbeat">
+    I don’t love you loudly 🫀<br>
+    I love you in silence,<br>
+    in patience,<br>
+    in staying.
+  </div>
+</section>
+
+<section class="section">
+  <div class="text soft calmFade" style="font-size:clamp(22px,5vw,34px);">
+    It will always be you, <span style="color:#c084fc;">Rumi 💜</span><br><br>
+    <span style="color:#60a5fa;">— Yours,<br>Soham 💙</span>
+  </div>
+</section>
+
+<script>
+const observer=new IntersectionObserver(entries=>{
+  entries.forEach(e=>{
+    const t=e.target.querySelector('.text');
+    if(e.isIntersecting){
+      requestAnimationFrame(()=>t.classList.add('show'));
+    }else{
+      t.classList.remove('show');
+    }
+  });
+},{threshold:0.65, rootMargin:"-10% 0px -10% 0px"});
+
+document.querySelectorAll('.section').forEach(s=>observer.observe(s));
+</script>
+
+</body>
+</html>
