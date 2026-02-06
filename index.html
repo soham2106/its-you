@@ -35,7 +35,7 @@ body{
   100%{background-position:0% 50%;}
 }
 
-/* floating loves */
+/* 💜 floating loves */
 .love{
   position:fixed;
   bottom:-10vh;
@@ -70,13 +70,21 @@ body{
 
 /* sections */
 .section{
-  min-height:100vh;
+  min-height:100vh; /* PC */
   scroll-snap-align:start;
   display:flex;
   justify-content:center;
   align-items:center;
   text-align:center;
   padding:26px 18px;
+}
+
+/* 📱 MOBILE GAP FIX */
+@media (max-width: 768px){
+  .section{
+    min-height:65vh;   /* 🔥 reduces ugly gaps */
+    padding:18px 16px;
+  }
 }
 
 /* base text */
@@ -102,7 +110,6 @@ body{
   transition:opacity 2.2s var(--ease);
 }
 
-/* visible */
 .show.fadeScale,
 .show.fadeUp,
 .show.zoomIn,
@@ -156,7 +163,7 @@ body{
 @keyframes spinPop{50%{transform:rotate(8deg) scale(1.12);}}
 @keyframes spin{to{transform:rotate(360deg);}}
 
-/* desktop */
+/* desktop emoji size */
 @media(min-width:768px){
   .emoji{font-size:56px;}
 }
@@ -170,6 +177,7 @@ body{
 <div class="orb pink" style="right:0;bottom:0;"></div>
 <div class="orb blue" style="left:55%;top:10%;"></div>
 
+<!-- floating loves -->
 <span class="love" style="left:20%;animation-duration:14s;">💜</span>
 <span class="love" style="left:50%;animation-duration:11s;">💜</span>
 <span class="love" style="left:80%;animation-duration:16s;">💜</span>
@@ -266,3 +274,5 @@ document.querySelectorAll('.section').forEach(s=>observer.observe(s));
 
 </body>
 </html>
+
+
