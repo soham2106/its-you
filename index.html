@@ -22,17 +22,9 @@ body{
   font-family:'Playfair Display',serif;
   color:white;
   overflow-y:auto;
-  -webkit-overflow-scrolling:touch;
   background:linear-gradient(120deg,#0f0120,#2e1065,#1e1b4b);
   background-size:400% 400%;
   animation:bgMove 22s var(--ease) infinite;
-}
-
-/* 🖥️ DESKTOP ONLY scroll snap */
-@media (min-width: 769px){
-  body{
-    scroll-snap-type:y mandatory;
-  }
 }
 
 @keyframes bgMove{
@@ -41,37 +33,22 @@ body{
   100%{background-position:0% 50%;}
 }
 
-/* 💜 floating loves */
-.love{
-  position:fixed;
-  bottom:-10vh;
-  font-size:16px;
-  opacity:.32;
-  filter:drop-shadow(0 0 10px var(--purple));
-  animation:floatLove linear infinite;
-  pointer-events:none;
-  z-index:-1;
-}
-@keyframes floatLove{
-  to{transform:translateY(-120vh) rotate(360deg);}
-}
-
-/* glow orbs */
+/* background glows */
 .orb{
   position:fixed;
-  width:260px;
-  height:260px;
+  width:280px;
+  height:280px;
   border-radius:50%;
-  filter:blur(120px);
+  filter:blur(130px);
   opacity:.45;
-  animation:floatOrb 28s var(--ease) infinite alternate;
+  animation:floatOrb 30s var(--ease) infinite alternate;
   z-index:-2;
 }
 .orb.purple{background:var(--purple);}
 .orb.pink{background:var(--pink);}
 .orb.blue{background:var(--blue);}
 @keyframes floatOrb{
-  to{transform:translate(260px,320px);}
+  to{transform:translate(280px,340px);}
 }
 
 /* sections */
@@ -81,144 +58,187 @@ body{
   justify-content:center;
   align-items:center;
   text-align:center;
-  padding:26px 18px;
-}
-
-/* 📱 MOBILE FLOW FIX */
-@media (max-width: 768px){
-  .section{
-    min-height:auto;          /* 🔥 THIS fixes the gap */
-    padding:32px 16px;        /* tight but readable */
-  }
-}
-
-/* scroll snap per section (desktop only) */
-@media (min-width: 769px){
-  .section{
-    scroll-snap-align:start;
-  }
+  padding:24px;
 }
 
 /* base text */
 .text{
   opacity:0;
-  will-change:transform, opacity;
+  transform:translateY(20px);
+  transition:1.6s var(--ease);
 }
-
-/* animations */
-.fadeScale{
-  transform:translateY(14px) scale(.98);
-  transition:opacity 1.4s var(--ease), transform 1.6s var(--ease);
-}
-.fadeUp{
-  transform:translateY(22px);
-  transition:opacity 1.6s var(--ease), transform 1.6s var(--ease);
-}
-.zoomIn{
-  transform:scale(.94);
-  transition:opacity 1.8s var(--ease), transform 1.8s var(--ease);
-}
-.calmFade{
-  transition:opacity 2.2s var(--ease);
-}
-
 .show{
   opacity:1;
   transform:none;
 }
 
-/* text */
+/* desktop text */
 .line{
-  font-size:clamp(22px,5.5vw,42px);
+  font-size:clamp(22px,5vw,42px);
   text-shadow:0 0 28px rgba(192,132,252,.7);
 }
 .soft{
   font-family:'Poppins',sans-serif;
-  font-size:clamp(17px,4.6vw,26px);
+  font-size:clamp(17px,4.5vw,26px);
   line-height:1.6;
 }
 
-/* heartbeat */
-.heartbeat{
-  animation:heartbeatGlow 3.8s var(--ease) infinite;
-}
-@keyframes heartbeatGlow{
-  50%{text-shadow:0 0 38px var(--pink);}
+/* MOBILE HERO LAYOUT */
+@media (max-width:768px){
+  .text{
+    display:flex;
+    flex-direction:column;
+    gap:24px;
+  }
+  .line{
+    font-size:clamp(28px,8vw,42px);
+  }
+  .soft{
+    font-size:clamp(20px,6vw,30px);
+  }
+  .emoji{
+    font-size:110px;   /* 🔥 BIG HERO EMOJI */
+  }
 }
 
 /* emojis */
 .emoji{
-  display:inline-block;
-  font-size:44px;
-  margin-left:8px;
+  display:block;
+  margin:auto;
 }
+
+/* emoji animations */
 .rose{animation:sway 4s var(--ease) infinite;}
-.teddy{animation:bounce 3s var(--ease) infinite;}
-.kiss{animation:pulse 2.2s var(--ease) infinite;}
-.hug{animation:beat 2.4s var(--ease) infinite;}
-.choco{animation:slide 3.6s var(--ease) infinite;}
-.promise{animation:glow 3s var(--ease) infinite;}
-.propose{animation:spinPop 3.6s var(--ease) infinite;}
+.teddy{animation:bounce 3.5s var(--ease) infinite;}
+.kiss{animation:pulse 2.6s var(--ease) infinite;}
+.hug{animation:beat 3s var(--ease) infinite;}
+.choco{animation:slide 4s var(--ease) infinite;}
+.promise{animation:glow 3.2s var(--ease) infinite;}
+.propose{animation:spinPop 4s var(--ease) infinite;}
 
 @keyframes sway{50%{transform:rotate(6deg);}}
-@keyframes bounce{50%{transform:translateY(-8px);}}
-@keyframes pulse{50%{transform:scale(1.18);}}
-@keyframes beat{30%{transform:scale(1.14);}}
-@keyframes slide{50%{transform:translateX(6px);}}
-@keyframes glow{50%{filter:drop-shadow(0 0 14px pink);}}
-@keyframes spinPop{50%{transform:rotate(8deg) scale(1.12);}}
+@keyframes bounce{50%{transform:translateY(-14px);}}
+@keyframes pulse{50%{transform:scale(1.25);}}
+@keyframes beat{30%{transform:scale(1.18);}}
+@keyframes slide{50%{transform:translateX(12px);}}
+@keyframes glow{50%{filter:drop-shadow(0 0 25px pink);}}
+@keyframes spinPop{50%{transform:rotate(10deg) scale(1.15);}}
 
-/* desktop emoji size */
-@media(min-width:768px){
-  .emoji{font-size:56px;}
+/* heartbeat line */
+.heartbeat{
+  animation:heartbeatGlow 4s ease-in-out infinite;
+}
+@keyframes heartbeatGlow{
+  50%{text-shadow:0 0 40px var(--pink);}
 }
 </style>
 </head>
 
 <body>
 
-<!-- background -->
+<!-- background glows -->
 <div class="orb purple"></div>
 <div class="orb pink" style="right:0;bottom:0;"></div>
 <div class="orb blue" style="left:55%;top:10%;"></div>
 
-<span class="love" style="left:20%;animation-duration:14s;">💜</span>
-<span class="love" style="left:50%;animation-duration:11s;">💜</span>
-<span class="love" style="left:80%;animation-duration:16s;">💜</span>
-
 <!-- CONTENT -->
 
-<section class="section"><div class="text line fadeScale">For me, every day is Rose Day<span class="emoji rose">🌹</span></div></section>
-<section class="section"><div class="text line fadeScale">Every day is Propose Day (to choose you, always <span class="emoji propose">💝</span>)</div></section>
-<section class="section"><div class="text line fadeScale">Every day is Chocolate Day (like us <span class="emoji choco">🍫</span>)</div></section>
-<section class="section"><div class="text line fadeScale">Every day is Teddy Day (that’s you <span class="emoji teddy">🧸</span>)</div></section>
-<section class="section"><div class="text line fadeScale">Every day is Promise Day (because I’ll never break your trust <span class="emoji promise">💞</span>)</div></section>
-<section class="section"><div class="text line fadeScale">Every day is Hug Day (absolutely <span class="emoji hug">🫂</span>)</div></section>
-<section class="section"><div class="text line fadeScale">Every day is Kiss Day (must <span class="emoji kiss">😘</span>)</div></section>
+<section class="section">
+  <div class="text line">
+    For me, every day is Rose Day
+    <span class="emoji rose">🌹</span>
+  </div>
+</section>
 
-<section class="section"><div class="text soft fadeUp">Nibba nibbis celebrate Valentine’s week 🗓️<br>For me, every single day has been Valentine’s Day since the day I met you ❤️‍🔥</div></section>
+<section class="section">
+  <div class="text line">
+    Every day is Propose Day
+    <span class="emoji propose">💝</span>
+  </div>
+</section>
 
-<section class="section"><div class="text soft zoomIn">I love you every day, every minute, every second.<br>If there’s only one person who loves you, that’s me.<br>And if there’s no one… that means I’m dead.</div></section>
+<section class="section">
+  <div class="text line">
+    Every day is Chocolate Day
+    <span class="emoji choco">🍫</span>
+  </div>
+</section>
 
-<section class="section"><div class="text soft fadeUp heartbeat">I don’t love you loudly 🫀<br>I love you in silence,<br>in patience,<br>in staying.</div></section>
+<section class="section">
+  <div class="text line">
+    Every day is Teddy Day (that’s you)
+    <span class="emoji teddy">🧸</span>
+  </div>
+</section>
 
-<section class="section"><div class="text soft calmFade" style="font-size:clamp(22px,5vw,34px);">It will always be you, <span style="color:#c084fc;">Rumi 💜</span><br><br><span style="color:#60a5fa;">— Yours,<br>Soham 💙</span></div></section>
+<section class="section">
+  <div class="text line">
+    Every day is Promise Day
+    <span class="emoji promise">💞</span>
+  </div>
+</section>
+
+<section class="section">
+  <div class="text line">
+    Every day is Hug Day
+    <span class="emoji hug">🫂</span>
+  </div>
+</section>
+
+<section class="section">
+  <div class="text line">
+    Every day is Kiss Day
+    <span class="emoji kiss">😘</span>
+  </div>
+</section>
+
+<section class="section">
+  <div class="text soft">
+    Nibba nibbis celebrate Valentine’s week 🗓️<br>
+    For me, every single day has been Valentine’s Day since the day I met you ❤️‍🔥
+  </div>
+</section>
+
+<section class="section">
+  <div class="text soft">
+    I love you every day, every minute, every second.<br>
+    If there’s only one person who loves you, that’s me.<br>
+    And if there’s no one… that means I’m dead.
+  </div>
+</section>
+
+<section class="section">
+  <div class="text soft heartbeat">
+    I don’t love you loudly 🫀<br>
+    I love you in silence,<br>
+    in patience,<br>
+    in staying.
+  </div>
+</section>
+
+<section class="section">
+  <div class="text soft" style="font-size:clamp(24px,7vw,36px);">
+    It will always be you, <span style="color:#c084fc;">Rumi 💜</span><br><br>
+    <span style="color:#60a5fa;">— Yours,<br>Soham 💙</span>
+  </div>
+</section>
 
 <script>
 const observer=new IntersectionObserver(entries=>{
   entries.forEach(e=>{
-    const t=e.target.querySelector('.text');
     if(e.isIntersecting){
-      t.classList.add('show');
+      e.target.querySelector('.text').classList.add('show');
     }
   });
-},{threshold:0.3});
+},{threshold:0.4});
 
 document.querySelectorAll('.section').forEach(s=>observer.observe(s));
 </script>
 
 </body>
 </html>
+
+
 
 
 
